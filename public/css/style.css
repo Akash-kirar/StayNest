@@ -71,3 +71,18 @@ margin-bottom: 2rem;
 .card-text p {
 font-weight: 400;
 }
+
+.listing-link {
+text-decoration: none;
+}
+
+/* Card Effect */
+
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+opacity: 0.2;
+background-color: white;
+}
