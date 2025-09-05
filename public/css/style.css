@@ -104,6 +104,7 @@ body {
 .add-btn {
   background-color: #fe424d !important;
   border: none !important;
+  margin-bottom: 15px !important;
 }
 
 /* Edit Page */
@@ -111,6 +112,7 @@ body {
 .edit-btn {
   background-color: #fe424d !important;
   border: none !important;
+  margin-bottom: 15px !important;
 }
 
 /* Show Page */
