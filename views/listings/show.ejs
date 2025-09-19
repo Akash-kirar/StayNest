@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 <div class="row mt-3">
   <div class="col-8 offset-3">
-    <h3>listings details :</h3>
+    <h3><%= listing.title %></h3>
 </div>
     <div class="card col-6 offset-3 show-card">
       <img
@@ -11,7 +11,6 @@
       />
       <div class="card-body">
         <p class="card-text">
-             <b><%= listing.title %></b><br>
              <%= listing.description %><br>
              &#8377; <%= listing.price.toLocaleString("en-IN") %><br>
              <%= listing.location %><br>
