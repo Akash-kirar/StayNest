@@ -1,22 +1,30 @@
-const Listing = require("../models/listing");
-const Review = require("../models/review");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-module.exports.createReview = async(req,res)=>{
-    let listing = await Listing.findById(req.params.id);
-    let newReview = new Review(req.body.review);
-    listing.reviews.push(newReview);
-    newReview.author = req.user._id;
-    await newReview.save();
-    await listing.save();
-    req.flash("success" , "New Review Created!");
-    res.redirect(`/listings/${listing._id}`);
-  };
+const reviewSchema = new Schema ({
+
+comment: String,
+
+rating: {
+
+type: Number,
+
+min: 1,
+
+max: 5,
+
+},
 
 
-  module.exports.destroyReview = async(req ,res)=>{
-        let {id , reviewId}=req.params;
-        await Listing.findByIdAndUpdate(id,{$pull :{reviews: reviewId}});
-        await Review.findByIdAndDelete(reviewId);
-        req.flash("success" , "Review Deleted!");
-        res.redirect(`/listings/${id}`);
-      };
+
+createdAt: {
+
+type: Date,
+
+default: Date.now()
+
+}
+
+});
+
+module.exports = mongoose.model("Review", reviewSchema);

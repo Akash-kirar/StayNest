@@ -120,15 +120,11 @@ res.redirect(`/listings/${id}`);
 
 //delete route
 app.delete("/listings/:id", wrapAsync ( async (req, res) => {
-    if(!req.body.listing){
-    throw new ExpressError(400,"Send valid data for listing");
-}
     let { id } = req.params;
    let deletedListing = await Listing.findByIdAndDelete(id);
    console.log(deletedListing);
    res.redirect("/listings");
 }));
-
 
 
 // app.get("/Testlisting", async (req, res) => {
