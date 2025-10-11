@@ -14,7 +14,9 @@
     <%- include("../includes/navbar.ejs") %>
     <!-- change body as diff page -->
 
-    <div class="container"><%- body %></div>
+    <div class="container">
+        <%- include("../includes/flash.ejs")%><%- body %>
+    </div>
 
      
     <%- include("../includes/footer.ejs") %>
