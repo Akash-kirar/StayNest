@@ -15,14 +15,13 @@ const upload = multer({storage});
 router
     .route("/")
     .get(wrapAsync(listingController.index))
-    // .post(isLoggedIn,
-    //     validateListing,
-    //     wrapAsync (listingController.createListing));
+    .post(isLoggedIn
+        ,upload.single("listing[image]"),
+        validateListing,
+        wrapAsync (listingController.createListing));
 
 
-.post(upload.single("listing[image]"),(req, res) => {
-    res.send(req.file);
-})
+
 
 
 
