@@ -38,8 +38,13 @@ owner: {
     },
   },
 
+  // category: {
+  //   type: String,
+  //   enum: ["Rooms", "Beach", "Iconic City", "New", "Boats", "Castle"],
+  //   required: true,
+  // },
 
-
+  
   });
  
 

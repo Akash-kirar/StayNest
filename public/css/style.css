@@ -136,3 +136,53 @@ body {
   height: 400px;
   width: 80vh;
 }
+
+
+.tab-container{
+    margin-left: 50px ;
+    border-radius: 4px;
+    overflow: hidden;
+    position:relative;
+    display: flex;
+    align-items: center;
+}
+
+#filters{
+    max-width: 70%;
+    display: flex;
+    align-items: center;
+    /* padding-left: 100px; */
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+  }
+  #filters::-webkit-scrollbar{
+    display: none;
+  }
+  .filter{
+    display: inline-block;
+    text-align: center;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+  }
+
+  .filter:hover{
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .tax_info{
+    display: none;
+  }
+
+  .tax-toggled{
+    border:  1px black solid;
+    border-radius: 1rem;
+    height: 2.5rem;
+    padding: 1rem;
+    margin-left: 3rem;
+    display: flex;
+    align-items: center;
+  }
