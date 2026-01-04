@@ -22,7 +22,7 @@ StayNest is a modern, responsive web application, designed to explore and showca
 🚀 How to Run Locally
 
 1.Clone the repository
-
+https://github.com/Akash-kirar/StayNest.git
 2.Navigate to the project folder
 cd staynest
 3.Install dependencies
