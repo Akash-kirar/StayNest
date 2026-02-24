@@ -43,9 +43,9 @@
 
 
         <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" method="GET" action="/listings">
             <input class="form-control me-2 search-input"
-             type="search" placeholder="Search">
+             type="search" name="q" placeholder="Search Your Product.">
             <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
         </div>
@@ -54,7 +54,7 @@
 
 
       <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/listings/new">Add new Shop</a>
+                <a class="nav-link" href="/listings/new">Add New Shop</a>
         <% if(!currUser) { %>
         <a class="nav-link" href="/signup"><b>Sign up</b></a>
         <a class="nav-link" href="/login"><b>Log in</b></a>
