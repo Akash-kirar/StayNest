@@ -1,8 +1,8 @@
 <% layout("/layouts/boilerplate") %>
 <div class="row mt-3">
-  <div class="col-8 offset-2">
+  <div class="col-12 col-md-8 offset-md-2">
     <br /><br />
-    <h3>Add New Item</h3>
+    <h3>Add New Listing</h3>
     <form
       method="POST"
       action="/listings"
@@ -11,71 +11,93 @@
       enctype="multipart/form-data"
     >
       <div class="mb-3">
-        <lable for="title" class="form-label">Product Name</lable>
+        <label for="title" class="form-label">Place Name</label>
         <input
           name="listing[title]"
-          placeholder="Enter product name"
+          placeholder="e.g. Cozy Beachfront Villa"
           type="text"
           class="form-control"
           required
         />
-        <div class="valid-feedback">Product Name Is good!</div>
+        <div class="valid-feedback">Looks great!</div>
       </div>
       <div class="mb-3">
-        <lable for="description" class="form-label">About Product</lable>
+        <label for="description" class="form-label">About the Place</label>
         <textarea
           name="listing[description]"
+          placeholder="Describe your place — views, features, nearby attractions..."
           class="form-control"
+          rows="4"
           required
         ></textarea>
-        <div class="invalid-feedback">Please entre a short Description</div>
+        <div class="invalid-feedback">Please add a short description</div>
       </div>
 
       <div class="mb-3">
-        <lable for="image" class="form-label">Uploade Image</lable>
+        <label for="category" class="form-label">Category</label>
+        <select name="listing[category]" class="form-select" required>
+          <option value="" disabled selected>Select a category</option>
+          <option value="Trending">🔥 Trending</option>
+          <option value="Beachfront">🌊 Beachfront</option>
+          <option value="Islands">🏖️ Islands</option>
+          <option value="Mountains">🏔️ Mountains</option>
+          <option value="Cabins">🌲 Cabins</option>
+          <option value="Camping">⛺ Camping</option>
+          <option value="Boats">⛵ Boats</option>
+          <option value="Pools">🏊 Pools</option>
+          <option value="Castles">🏰 Castles</option>
+          <option value="Arctic">❄️ Arctic</option>
+          <option value="Domes">🏛️ Domes</option>
+          <option value="Farms">🌾 Farms</option>
+          <option value="Earthhomes">🏠 Earthhomes</option>
+          <option value="Villas">🥂 Villas</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload Place Photo</label>
         <input name="listing[image]" type="file" class="form-control" />
-        required
       </div>
 
       <div class="row">
-        <div class="mb-3 col-md-4">
-          <lable for="price" class="form-label">Price</lable>
+        <div class="mb-3 col-12 col-md-4">
+          <label for="price" class="form-label">Price per Night (₹)</label>
           <input
             name="listing[price]"
-            placeholder="1200"
+            placeholder="e.g. 3500"
             type="number"
             class="form-control"
             required
           />
-          <div class="invalid-feedback">Price should be valid</div>
+          <div class="invalid-feedback">Please enter a valid price</div>
         </div>
 
-        <div class="mb-3 col-md-8">
-          <lable for="country" class="form-label">Country</lable>
+        <div class="mb-3 col-12 col-md-8">
+          <label for="country" class="form-label">Country</label>
           <input
             name="listing[country]"
-            placeholder="India"
+            placeholder="e.g. India"
             type="text"
             class="form-control"
             required
           />
-          <div class="invalid-feedback">Country name should be valid</div>
+          <div class="invalid-feedback">Please enter a valid country</div>
         </div>
       </div>
 
       <div class="mb-3">
-        <lable for="location" class="form-label">Location</lable>
+        <label for="location" class="form-label">Location / Address</label>
         <input
           name="listing[location]"
-          placeholder="jaipur, rajasthan"
+          placeholder="e.g. Goa, India"
           type="text"
           class="form-control"
           required
         />
-        <div class="invalid-feedback">Location should be valid</div>
+        <div class="invalid-feedback">Please enter a valid location</div>
       </div>
 
-      <button class="btn btn-dark add-btn mt-3">Add Item</button>
+      <button class="btn btn-dark add-btn mt-3">Add Listing</button>
     </form>
   </div>
 </div>

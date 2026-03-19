@@ -1,68 +1,193 @@
 
 <style>
-  .search-btn{
+  .search-btn {
     background-color: #fe424d;
     color: #fff;
     border-radius: 25px;
-    padding:0 1rem 0 1rem;
-
-  }
- .search-btn:hover{
-   font-size: larger;
-   color: #000000;
+    padding: 0.45rem 1rem;
+    white-space: nowrap;
   }
 
-  .search-input{
+  .search-btn:hover {
+    color: #000;
+  }
+
+  .search-input {
     border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
+    padding: 0.45rem 1.2rem;
     font-size: 1rem;
+    min-width: 0;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-search-form {
+      /* Let form shrink to fit between logo and hamburger */
+      min-width: 0;
+      margin-left: 0.4rem !important;
+      margin-right: 0.4rem !important;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem;
+    }
+
+    .search-btn {
+      padding: 0.4rem 0.75rem;
+      flex-shrink: 0;
+    }
+  }
+
+  /* ---- Offcanvas mobile nav ---- */
+  .offcanvas-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.95rem 1.25rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: background 0.18s ease, color 0.18s ease;
+    margin-bottom: 0.35rem;
+  }
+
+  .offcanvas-nav-item:hover {
+    background-color: #fff0f0;
+    color: #fe424d;
+  }
+
+  .offcanvas-nav-item .ofc-icon {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    color: #fe424d;
+    flex-shrink: 0;
+    transition: background 0.18s ease;
+  }
+
+  .offcanvas-nav-item:hover .ofc-icon {
+    background: #fe424d;
+    color: #fff;
+  }
+
+  .offcanvas-divider {
+    border: none;
+    border-top: 1px solid #ebebeb;
+    margin: 0.75rem 0;
+  }
+
+  .offcanvas-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #222;
+  }
+
+  .offcanvas-brand .fa-compass {
+    font-size: 1.6rem;
   }
 </style>
 
-
-
-
-
-
-
-
-
-
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" >
+
+    <!-- Brand Logo -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+
+    <!-- Search Bar (visible on ALL screen sizes) -->
+    <form class="d-flex flex-grow-1 navbar-search-form mx-2" style="max-width:420px;"
+      role="search" method="GET" action="/listings">
+      <input class="form-control me-2 search-input" type="search" name="q"
+        placeholder="Search products..." aria-label="Search">
+      <button class="btn search-btn" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
+
+    <!-- DESKTOP: Right links -->
+    <ul class="navbar-nav d-none d-md-flex flex-row align-items-center gap-1">
+      <li class="nav-item"><a class="nav-link" href="/listings">Explore</a></li>
+      <li class="nav-item"><a class="nav-link" href="/listings/new">Add New Listing</a></li>
+      <% if(!currUser) { %>
+      <li class="nav-item"><a class="nav-link" href="/signup"><b>Sign up</b></a></li>
+      <li class="nav-item"><a class="nav-link" href="/login"><b>Log in</b></a></li>
+      <% } %>
+      <% if(currUser) { %>
+      <li class="nav-item"><a class="nav-link" href="/logout"><b>Log out</b></a></li>
+      <% } %>
+    </ul>
+
+    <!-- MOBILE: Hamburger → Offcanvas trigger -->
+    <button class="navbar-toggler d-md-none border-0" type="button"
+      data-bs-toggle="offcanvas" data-bs-target="#mobileNavOffcanvas"
+      aria-controls="mobileNavOffcanvas" aria-label="Open menu">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
- 
-        <a class="nav-link" href="/listings">Explore</a>
 
-      </div>
-
-
-        <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search" method="GET" action="/listings">
-            <input class="form-control me-2 search-input"
-             type="search" name="q" placeholder="Search Your Product.">
-            <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-          </form>
-        </div>
-
-
-
-
-      <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/listings/new">Add New Shop</a>
-        <% if(!currUser) { %>
-        <a class="nav-link" href="/signup"><b>Sign up</b></a>
-        <a class="nav-link" href="/login"><b>Log in</b></a>
-        <% } %>
-        <% if(currUser) { %>
-        <a class="nav-link" href="/logout"><b>Log out</b></a>
-        <% } %>
-      </div>
-    </div>
   </div>
 </nav>
+
+<!-- ====== MOBILE OFFCANVAS DRAWER ====== -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNavOffcanvas"
+  aria-labelledby="mobileNavOffcanvasLabel" style="max-width:300px;">
+
+  <!-- Offcanvas Header -->
+  <div class="offcanvas-header border-bottom pb-3">
+    <div class="offcanvas-brand">
+      <i class="fa-regular fa-compass" style="color:#fe424d;"></i>
+      <span>WanderLust</span>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <!-- Offcanvas Body -->
+  <div class="offcanvas-body pt-3">
+
+    <hr class="offcanvas-divider">
+
+    <!-- Nav Links — navigate directly via href, no data-bs-dismiss that kills the click -->
+    <a href="/listings" class="offcanvas-nav-item">
+      <span class="ofc-icon"><i class="fa-solid fa-compass"></i></span>
+      Explore
+    </a>
+
+    <a href="/listings/new" class="offcanvas-nav-item">
+      <span class="ofc-icon"><i class="fa-solid fa-house-chimney"></i></span>
+      Add New Listing
+    </a>
+
+    <hr class="offcanvas-divider">
+
+    <% if(!currUser) { %>
+    <a href="/signup" class="offcanvas-nav-item">
+      <span class="ofc-icon"><i class="fa-solid fa-user-plus"></i></span>
+      Sign up
+    </a>
+    <a href="/login" class="offcanvas-nav-item">
+      <span class="ofc-icon"><i class="fa-solid fa-right-to-bracket"></i></span>
+      Log in
+    </a>
+    <% } %>
+
+    <% if(currUser) { %>
+    <a href="/logout" class="offcanvas-nav-item">
+      <span class="ofc-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+      Log out
+    </a>
+    <% } %>
+
+  </div>
+</div>

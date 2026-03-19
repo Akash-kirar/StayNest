@@ -1,18 +1,27 @@
+/* ===========================
+   BASE STYLES
+=========================== */
 body {
   font-family: "Plus Jakarta Sans", sans-serif !important;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .container {
   flex: 1;
 }
 
-/* navbar*/
+/* ===========================
+   NAVBAR
+=========================== */
 .navbar {
-  height: 5rem;
+  min-height: 4rem;
+  height: auto;
   background-color: white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .fa-compass {
@@ -24,8 +33,29 @@ body {
   color: #222222 !important;
 }
 
-/* footer */
+/* Search bar */
+.search-btn {
+  background-color: #fe424d;
+  color: #fff;
+  border-radius: 25px;
+  padding: 0 1rem;
+  white-space: nowrap;
+}
 
+.search-btn:hover {
+  color: #000000;
+}
+
+.search-input {
+  border-radius: 25px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  min-width: 0; /* allow shrinking */
+}
+
+/* ===========================
+   FOOTER
+=========================== */
 .f-info-links a {
   text-decoration: none;
   color: #222222;
@@ -42,6 +72,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .f-info-socials i {
@@ -55,16 +87,20 @@ body {
 
 .f-info {
   text-align: center;
-  height: 8rem;
+  min-height: 8rem;           /* changed from fixed height to min-height */
+  height: auto;               /* allow growing on small screens */
+  padding: 1rem 0.5rem;
   background-color: #ebebeb;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: space-evenly;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-/* cards */
-
+/* ===========================
+   LISTING CARDS (INDEX PAGE)
+=========================== */
 .listing-card {
   border: none !important;
   margin-bottom: 2rem;
@@ -74,6 +110,7 @@ body {
   border-radius: 1rem !important;
   width: 100% !important;
   object-fit: cover !important;
+  height: 22rem;              /* default desktop height (overrides inline) */
 }
 
 .card-body {
@@ -88,10 +125,10 @@ body {
   text-decoration: none;
 }
 
-/* Card Effect */
-
+/* Hover shimmer effect */
 .card-img-overlay {
   opacity: 0;
+  border-radius: 1rem;
 }
 
 .card-img-overlay:hover {
@@ -99,30 +136,50 @@ body {
   background-color: white;
 }
 
-/* new-page */
-
+/* ===========================
+   NEW / ADD LISTING BUTTON
+=========================== */
 .add-btn {
   background-color: #fe424d !important;
   border: none !important;
   margin-bottom: 15px !important;
 }
 
-/* Edit Page */
-
+/* ===========================
+   EDIT PAGE
+=========================== */
 .edit-btn {
   background-color: #fe424d !important;
   border: none !important;
   margin-bottom: 15px !important;
 }
 
-/* Show Page */
+/* Preview image in edit form */
+.edit-preview-img {
+  max-width: 100%;
+  max-height: 240px;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  display: block;
+  margin-top: 0.5rem;
+}
 
+/* ===========================
+   SHOW PAGE
+=========================== */
 .show-img {
-  height: 30vh;
+  height: clamp(180px, 35vw, 360px);
+  width: 100%;
+  object-fit: cover;
 }
 
 .btns {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0.75rem auto;
+  padding: 0 0.75rem;
+  max-width: 600px;           /* align with offset-md-3 card width on desktop */
 }
 
 .show-card {
@@ -130,57 +187,176 @@ body {
   padding-right: 0;
 }
 
-/*map*/
-
+/* ===========================
+   MAP
+=========================== */
 #map {
   height: 400px;
-  width: 80vh;
+  width: 100%;
+  border-radius: 0.75rem;
 }
 
+/* ===========================
+   FILTERS / TAB CONTAINER (INDEX)
+=========================== */
 .tab-container {
-  margin-left: 50px;
+  margin-left: 0;              /* was 50px — caused overflow on mobile */
   border-radius: 4px;
   overflow: hidden;
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.25rem;
 }
 
 #filters {
-  max-width: 70%;
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
-  /* padding-left: 100px; */
-  overflow-x: scroll;
+  overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 #filters::-webkit-scrollbar {
   display: none;
 }
+
 .filter {
   display: inline-block;
   text-align: center;
   margin-right: 2rem;
   margin-top: 2rem;
   opacity: 0.85;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .filter:hover {
   opacity: 1;
-  cursor: pointer;
 }
 
+/* Tax toggle */
 .tax_info {
   display: none;
 }
 
 .tax-toggled {
-  border: 1px black solid;
+  border: 1px solid black;
   border-radius: 1rem;
-  height: 2.5rem;
-  padding: 1rem;
-  margin-left: 3rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ===========================
+   RESPONSIVE: TABLET (≤768px)
+=========================== */
+@media (max-width: 768px) {
+  .card-img-top {
+    height: 18rem;
+  }
+
+  .show-img {
+    height: clamp(160px, 40vw, 300px);
+  }
+
+  #map {
+    height: 300px;
+  }
+
+  .btns {
+    max-width: 100%;
+  }
+}
+
+/* ===========================
+   RESPONSIVE: MOBILE (≤576px)
+=========================== */
+@media (max-width: 576px) {
+  /* Navbar */
+  .navbar {
+    min-height: 3.5rem;
+  }
+
+  .search-input {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .search-btn {
+    padding: 0.4rem 0.9rem;
+  }
+
+  /* Filter bar */
+  .tab-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #filters {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .filter {
+    margin-top: 0.75rem;
+    margin-right: 1.25rem;
+  }
+
+  .tax-toggled {
+    width: 100%;
+    border-radius: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Cards */
+  .card-img-top {
+    height: 14rem;
+  }
+
+  /* Show page */
+  .show-img {
+    height: clamp(150px, 50vw, 220px);
+  }
+
+  .btns {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .btns .btn,
+  .btns form {
+    width: 100%;
+  }
+
+  .btns form .btn {
+    width: 100%;
+  }
+
+  /* Map */
+  #map {
+    height: 220px;
+  }
+
+  /* Forms */
+  .add-btn,
+  .edit-btn {
+    width: 100%;
+  }
+
+  /* Footer */
+  .f-info {
+    padding: 1.5rem 1rem;
+  }
+
+  .f-info-socials i {
+    font-size: 1.3rem;
+    margin-right: 0.75rem;
+  }
 }

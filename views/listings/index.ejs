@@ -1,120 +1,198 @@
 <% layout("/layouts/boilerplate") %>
+<% const activeCategory = locals.activeCategory || null; %>
+
+<style>
+  .filter {
+    cursor: pointer;
+  }
+  .filter a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .filter.active p,
+  .filter.active i {
+    color: #fe424d;
+    font-weight: 600;
+  }
+  .filter.active::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: #fe424d;
+    border-radius: 2px;
+    margin-top: 4px;
+  }
+  .clear-filter {
+    font-size: 0.8rem;
+    color: #fe424d;
+    text-decoration: underline;
+    cursor: pointer;
+    white-space: nowrap;
+    align-self: flex-end;
+    margin-bottom: 0.5rem;
+  }
+</style>
 
   <div class="tab-container">
-
     <div id="filters">
-      <div class="filter">
-        <div><i class="fa-solid fa-fire"></i></div>
-        <p>For_You</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-bed"></i></div>
-        <p>Fashion</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-brands fa-font-awesome"></i></div>
-        <p>Electronics</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-person-swimming"></i></div>
-        <p>toys</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-umbrella-beach"></i></div>
-        <p>Mobiles</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-mountain-city"></i></div>
-        <p>Application</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-key"></i></div>
-        <p>Books</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-sailboat"></i></div>
-        <p>Foods</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-brands fa-fort-awesome"></i></div>
-        <p>Castle</p>
+
+      <div class="filter <%= activeCategory === 'Trending' ? 'active' : '' %>">
+        <a href="/listings?category=Trending">
+          <div><i class="fa-solid fa-fire"></i></div>
+          <p>Trending</p>
+        </a>
       </div>
 
-      <div class="filter">
-        <div><i class="fa-regular fa-snowflake"></i></i></div>
-        <p>Arctic</p>
+      <div class="filter <%= activeCategory === 'Beachfront' ? 'active' : '' %>">
+        <a href="/listings?category=Beachfront">
+          <div><i class="fa-solid fa-water"></i></div>
+          <p>Beachfront</p>
+        </a>
       </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-landmark-dome"></i></i></i></div>
-        <p>Domes</p>
+
+      <div class="filter <%= activeCategory === 'Islands' ? 'active' : '' %>">
+        <a href="/listings?category=Islands">
+          <div><i class="fa-solid fa-umbrella-beach"></i></div>
+          <p>Islands</p>
+        </a>
       </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-campground"></i></div>
-        <p>Camping</p>
+
+      <div class="filter <%= activeCategory === 'Mountains' ? 'active' : '' %>">
+        <a href="/listings?category=Mountains">
+          <div><i class="fa-solid fa-mountain-city"></i></div>
+          <p>Mountains</p>
+        </a>
       </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-campground"></i></div>
-        <p>Camping</p>
+
+      <div class="filter <%= activeCategory === 'Cabins' ? 'active' : '' %>">
+        <a href="/listings?category=Cabins">
+          <div><i class="fa-solid fa-tree"></i></div>
+          <p>Cabins</p>
+        </a>
       </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-igloo"></i></div>
-        <p>Earths Home</p>
+
+      <div class="filter <%= activeCategory === 'Camping' ? 'active' : '' %>">
+        <a href="/listings?category=Camping">
+          <div><i class="fa-solid fa-campground"></i></div>
+          <p>Camping</p>
+        </a>
       </div>
+
+      <div class="filter <%= activeCategory === 'Boats' ? 'active' : '' %>">
+        <a href="/listings?category=Boats">
+          <div><i class="fa-solid fa-sailboat"></i></div>
+          <p>Boats</p>
+        </a>
+      </div>
+
+      <div class="filter <%= activeCategory === 'Pools' ? 'active' : '' %>">
+        <a href="/listings?category=Pools">
+          <div><i class="fa-solid fa-water-ladder"></i></div>
+          <p>Pools</p>
+        </a>
+      </div>
+
+      <div class="filter <%= activeCategory === 'Castles' ? 'active' : '' %>">
+        <a href="/listings?category=Castles">
+          <div><i class="fa-brands fa-fort-awesome"></i></div>
+          <p>Castles</p>
+        </a>
+      </div>
+
+      <div class="filter <%= activeCategory === 'Arctic' ? 'active' : '' %>">
+        <a href="/listings?category=Arctic">
+          <div><i class="fa-regular fa-snowflake"></i></div>
+          <p>Arctic</p>
+        </a>
+      </div>
+
+      <div class="filter <%= activeCategory === 'Domes' ? 'active' : '' %>">
+        <a href="/listings?category=Domes">
+          <div><i class="fa-solid fa-landmark-dome"></i></div>
+          <p>Domes</p>
+        </a>
+      </div>
+
+      <div class="filter <%= activeCategory === 'Farms' ? 'active' : '' %>">
+        <a href="/listings?category=Farms">
+          <div><i class="fa-solid fa-tractor"></i></div>
+          <p>Farms</p>
+        </a>
+      </div>
+
+      <div class="filter <%= activeCategory === 'Earthhomes' ? 'active' : '' %>">
+        <a href="/listings?category=Earthhomes">
+          <div><i class="fa-solid fa-igloo"></i></div>
+          <p>Earthhomes</p>
+        </a>
+      </div>
+
+      <div class="filter <%= activeCategory === 'Villas' ? 'active' : '' %>">
+        <a href="/listings?category=Villas">
+          <div><i class="fa-solid fa-champagne-glasses"></i></div>
+          <p>Villas</p>
+        </a>
+      </div>
+
     </div>
-    <div class="tax-toggled">
-      <div class="form-check-reverse form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+
+    <div class="d-flex flex-column align-items-end gap-1">
+      <% if (activeCategory) { %>
+        <a href="/listings" class="clear-filter">✕ Clear filter</a>
+      <% } %>
+      <div class="tax-toggled">
+        <div class="form-check-reverse form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+        </div>
       </div>
     </div>
   </div>
 
 
-
-
-
-
+  <% if (activeCategory) { %>
+    <div class="mt-3 mb-1">
+      <h5 class="fw-semibold" style="color:#222;">
+        <i class="fa-solid fa-filter" style="color:#fe424d; font-size:0.9rem;"></i>
+        &nbsp;<%= activeCategory %> places
+      </h5>
+    </div>
+  <% } %>
 
   <% if (allListings.length===0) { %>
     <div class="alert alert-warning mt-3" role="alert">
-      No products found matching your search. Give it another try!
+      <% if (activeCategory) { %>
+        No <b><%= activeCategory %></b> listings yet. Be the first to add one!
+      <% } else { %>
+        No places found matching your search. Give it another try!
+      <% } %>
     </div>
     <% } else { %>
       <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 mt-3">
         <% for(let listing of allListings) { %>
           <a href="/listings/<%= listing._id %>" class="listing-link">
             <div class="card col listing-card">
-              <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem">
+              <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image">
               <div class="card-img-overlay"></div>
               <div class="card-body">
                 <p class="card-text">
-                  <b>
-                    <%= listing.title %>
-                  </b> <br>
+                  <b><%= listing.title %></b> <br>
                   &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
-                    <i class="tax-info"> &nbsp; &nbsp; +18%Gst</i>
+                  <i class="tax-info">&nbsp; &nbsp; +18%GST</i>
                 </p>
               </div>
             </div>
           </a>
-          <% } %>
-
+        <% } %>
       </div>
-      <% } %>
+    <% } %>
 
-
-        <script>
-          let taxtSwitch = document.getElementById("flexSwitchCheckDefault");
-          taxtSwitch.addEventListener("click", () => {
-            let taxInfo = document.getElementsByClassName("tax-info");
-            for (info of taxInfo) {
-              if (info.style.display != "inline") {
-                info.style.display = "inline";
-              }
-              else {
-                info.style.display = "none";
-              }
-
-            }
-          });
-        </script>
+    <script>
+      let taxtSwitch = document.getElementById("flexSwitchCheckDefault");
+      taxtSwitch.addEventListener("click", () => {
+        let taxInfo = document.getElementsByClassName("tax-info");
+        for (info of taxInfo) {
+          info.style.display = (info.style.display != "inline") ? "inline" : "none";
+        }
+      });
+    </script>
