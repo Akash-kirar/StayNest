@@ -175,10 +175,10 @@
               <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image">
               <div class="card-img-overlay"></div>
               <div class="card-body">
-                <p class="card-text">
+                <p class="card-text price-text" data-price="<%= listing.price %>">
                   <b><%= listing.title %></b> <br>
-                  &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
-                  <i class="tax-info">&nbsp; &nbsp; +18%GST</i>
+                  <span class="base-price">&#8377; <%= listing.price.toLocaleString("en-IN") %> / night</span>
+                  <span class="total-price" style="display:none;">&#8377; <%= Math.round(listing.price * 1.18).toLocaleString("en-IN") %> / night <small class="text-muted">(+18% GST)</small></span>
                 </p>
               </div>
             </div>
@@ -189,10 +189,13 @@
 
     <script>
       let taxtSwitch = document.getElementById("flexSwitchCheckDefault");
-      taxtSwitch.addEventListener("click", () => {
-        let taxInfo = document.getElementsByClassName("tax-info");
-        for (info of taxInfo) {
-          info.style.display = (info.style.display != "inline") ? "inline" : "none";
-        }
+      taxtSwitch.addEventListener("change", () => {
+        const showTotal = taxtSwitch.checked;
+        document.querySelectorAll(".base-price").forEach(el => {
+          el.style.display = showTotal ? "none" : "inline";
+        });
+        document.querySelectorAll(".total-price").forEach(el => {
+          el.style.display = showTotal ? "inline" : "none";
+        });
       });
     </script>

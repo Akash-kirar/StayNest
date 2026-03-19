@@ -21,21 +21,22 @@
 
   @media (max-width: 768px) {
     .navbar-search-form {
-      /* Let form shrink to fit between logo and hamburger */
       min-width: 0;
+      max-width: 200px;         /* cap width so hamburger fits on same row */
+      flex-shrink: 1;
       margin-left: 0.4rem !important;
-      margin-right: 0.4rem !important;
+      margin-right: 0.3rem !important;
     }
 
     .search-input {
       flex: 1;
       min-width: 0;
-      font-size: 0.85rem;
-      padding: 0.4rem 0.75rem;
+      font-size: 0.82rem;
+      padding: 0.38rem 0.6rem;
     }
 
     .search-btn {
-      padding: 0.4rem 0.75rem;
+      padding: 0.38rem 0.65rem;
       flex-shrink: 0;
     }
   }
@@ -100,10 +101,10 @@
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
+  <div class="container-fluid flex-nowrap">
 
     <!-- Brand Logo -->
-    <a class="navbar-brand" href="/listings">
+    <a class="navbar-brand flex-shrink-0" href="/listings">
       <i class="fa-regular fa-compass"></i>
     </a>
 
@@ -111,14 +112,14 @@
     <form class="d-flex flex-grow-1 navbar-search-form mx-2" style="max-width:420px;"
       role="search" method="GET" action="/listings">
       <input class="form-control me-2 search-input" type="search" name="q"
-        placeholder="Search products..." aria-label="Search">
-      <button class="btn search-btn" type="submit">
+        placeholder="Search..." aria-label="Search">
+      <button class="btn search-btn flex-shrink-0" type="submit">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </form>
 
     <!-- DESKTOP: Right links -->
-    <ul class="navbar-nav d-none d-md-flex flex-row align-items-center gap-1">
+    <ul class="navbar-nav d-none d-md-flex flex-row align-items-center gap-1 flex-shrink-0">
       <li class="nav-item"><a class="nav-link" href="/listings">Explore</a></li>
       <li class="nav-item"><a class="nav-link" href="/listings/new">Add New Listing</a></li>
       <% if(!currUser) { %>
@@ -130,8 +131,8 @@
       <% } %>
     </ul>
 
-    <!-- MOBILE: Hamburger → Offcanvas trigger -->
-    <button class="navbar-toggler d-md-none border-0" type="button"
+    <!-- MOBILE: Hamburger (ms-auto keeps it at far right on same row) -->
+    <button class="navbar-toggler d-md-none border-0 ms-auto flex-shrink-0" type="button"
       data-bs-toggle="offcanvas" data-bs-target="#mobileNavOffcanvas"
       aria-controls="mobileNavOffcanvas" aria-label="Open menu">
       <span class="navbar-toggler-icon"></span>
