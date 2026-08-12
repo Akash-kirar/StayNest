@@ -24,11 +24,12 @@ const UserRouter = require("./routes/user.js");
 
 const port = process.env.PORT || 8080;
 const defaultLocalDbUrl = "mongodb://127.0.0.1:27017/wanderlust";
+// Use ATLASDB_URL if available (for Render/production), otherwise use local DB
 const dbUrl =
   process.env.DB_URL ||
-  (process.env.NODE_ENV === "production"
-    ? process.env.ATLASDB_URL
-    : process.env.LOCAL_DB_URL || defaultLocalDbUrl);
+  process.env.ATLASDB_URL ||
+  process.env.LOCAL_DB_URL ||
+  defaultLocalDbUrl;
 
 main()
   .then(() => {
