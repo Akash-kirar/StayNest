@@ -1,0 +1,7 @@
+
+> myproject-1@1.0.0 start
+> node app.js
+
+[dotenv@17.2.3] injecting env (6) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+connected to DB
+server is listening on port 8080

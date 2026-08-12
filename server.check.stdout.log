@@ -1,0 +1,3 @@
+[dotenv@17.2.3] injecting env (6) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+connected to DB
+server is listening on port 8080

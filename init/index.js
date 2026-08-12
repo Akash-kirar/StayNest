@@ -6,7 +6,12 @@ if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
 
-const dbUrl = process.env.ATLASDB_URI;
+const defaultLocalDbUrl = "mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl =
+  process.env.DB_URL ||
+  (process.env.NODE_ENV === "production"
+    ? process.env.ATLASDB_URL
+    : process.env.LOCAL_DB_URL || defaultLocalDbUrl);
 
 main()
   .then(() => {
