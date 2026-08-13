@@ -37,10 +37,6 @@ npm start
 
 
 
-
-
-
-
 more about staynest app.
 
 🏡 StayNest
@@ -87,8 +83,6 @@ StayNest is also a portfolio project demonstrating how a real-world property pla
 📌 Project Status
 
 🚧 StayNest is an ongoing project with plans for additional features and improvements in the future.
-
----
 
 StayNest — Find your stay. Make it feel like home. 🏡
 
